@@ -4,7 +4,7 @@
 
 Portfolio personal con estética neón: texto que se escribe solo, partículas que esquivan el mouse, proyectos filtrables y barras de habilidades animadas.
 
-**🔗 Demo en vivo:** https://TU-USUARIO.github.io/portfolio-neon/  ← reemplazá `TU-USUARIO` cuando lo publiques
+**🔗 Demo en vivo:** https://rumenco1221.github.io/portfolio-neon/
 
 ![Captura de Portfolio Neón en escritorio](images/captura-escritorio.png)
 
@@ -56,7 +56,7 @@ portfolio-neon/
 
 ## ▶️ Cómo verlo
 
-1. Descargá o cloná el repositorio: `git clone https://github.com/TU-USUARIO/portfolio-neon.git`
+1. Descargá o cloná el repositorio: `git clone https://github.com/Rumenco1221/portfolio-neon.git`
 2. Abrí `index.html` con doble clic, o usá la extensión **Live Server** de VS Code.
 
 ## ✅ Pruebas
@@ -78,7 +78,7 @@ Verifica SEO básico, semántica, accesibilidad de imágenes y que existan los a
 ## 👩‍💻 Autora
 
 **Verónica** — Desarrolladora Full Stack en formación.
-[LinkedIn](https://www.linkedin.com/in/TU-PERFIL) · [GitHub](https://github.com/TU-USUARIO)
+[LinkedIn](https://www.linkedin.com/in/TU-PERFIL) · [GitHub](https://github.com/Rumenco1221)
 
 ## 📄 Licencia
 
