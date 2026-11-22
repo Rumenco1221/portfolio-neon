@@ -1,0 +1,101 @@
+/* =========================================================
+   Portfolio Neón — Hoja de estilos
+   Paleta: índigo profundo + rosa, cian y amarillo neón
+   ========================================================= */
+:root {
+  --fondo: #1B1036;
+  --fondo-2: #26164D;
+  --rosa: #FF2E88;
+  --cian: #00E5FF;
+  --amarillo: #FFE14D;
+  --texto: #F4EEFF;
+  --suave: #B9A9E0;
+  --radio: 18px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: "DM Sans", system-ui, sans-serif;
+  background: radial-gradient(circle at 80% 0%, #3A1C7A 0%, var(--fondo) 55%);
+  color: var(--texto);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+#particulas { position: fixed; inset: 0; z-index: -1; }
+
+/* ---------- Navegación ---------- */
+.nav {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.2rem 6vw; position: sticky; top: 0; z-index: 10;
+  background: rgba(27, 16, 54, .7); backdrop-filter: blur(10px);
+}
+.logo { font-family: "Unbounded", sans-serif; font-weight: 800; color: var(--texto); text-decoration: none; font-size: 1.3rem; }
+.logo span { color: var(--rosa); }
+.nav nav { display: flex; gap: 1.5rem; }
+.nav nav a { color: var(--suave); text-decoration: none; font-weight: 500; }
+.nav nav a:hover, .nav nav a:focus-visible { color: var(--cian); }
+
+/* ---------- Hero ---------- */
+.hero { min-height: 88vh; display: flex; flex-direction: column; justify-content: center; padding: 0 6vw; max-width: 1100px; }
+.saludo { color: var(--amarillo); font-weight: 700; font-size: 1.1rem; }
+.titulo {
+  font-family: "Unbounded", sans-serif; font-weight: 800;
+  font-size: clamp(2.6rem, 8vw, 6rem); line-height: 1.02; margin: .6rem 0 1.2rem;
+}
+.rotador {
+  display: block;
+  background: linear-gradient(90deg, var(--rosa), var(--cian), var(--amarillo));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  min-height: 1.05em;
+}
+.rotador::after { content: "|"; color: var(--cian); animation: parpadeo 1s steps(1) infinite; }
+@keyframes parpadeo { 50% { opacity: 0; } }
+.bajada { max-width: 58ch; color: var(--suave); font-size: 1.15rem; }
+.acciones { display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; }
+
+.btn { padding: .9rem 1.6rem; border-radius: 999px; font-weight: 700; text-decoration: none; cursor: pointer; font-size: 1rem; border: 0; font-family: inherit; }
+.btn-relleno { background: var(--rosa); color: #fff; box-shadow: 0 0 24px rgba(255, 46, 136, .55); }
+.btn-relleno:hover { background: #ff4f9d; }
+.btn-borde { border: 2px solid var(--cian); color: var(--cian); }
+.btn-borde:hover { background: rgba(0, 229, 255, .12); }
+:focus-visible { outline: 3px solid var(--amarillo); outline-offset: 3px; }
+
+/* ---------- Secciones ---------- */
+.seccion { padding: 5rem 6vw; max-width: 1200px; margin: 0 auto; }
+.seccion h2 { font-family: "Unbounded", sans-serif; font-size: clamp(1.8rem, 4vw, 2.8rem); margin-bottom: 1.5rem; }
+
+.filtros { display: flex; gap: .6rem; flex-wrap: wrap; margin-bottom: 2rem; }
+.filtro { background: transparent; border: 1px solid var(--suave); color: var(--suave); padding: .5rem 1.1rem; border-radius: 999px; cursor: pointer; font-family: inherit; }
+.filtro.activo { background: var(--cian); border-color: var(--cian); color: var(--fondo); font-weight: 700; }
+
+.grilla { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.4rem; }
+.proyecto {
+  background: var(--fondo-2); border-radius: var(--radio); padding: 1.6rem;
+  border-top: 5px solid var(--color, var(--rosa));
+  transition: transform .25s;
+}
+.proyecto:hover { transform: translateY(-6px) rotate(-.6deg); }
+.proyecto h3 { font-size: 1.25rem; margin-bottom: .4rem; }
+.proyecto p { color: var(--suave); font-size: .95rem; }
+.etiquetas { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: 1rem; }
+.etiquetas span { font-size: .78rem; background: rgba(255,255,255,.08); padding: .2rem .6rem; border-radius: 6px; }
+
+/* Barras de habilidades: se llenan al entrar en pantalla */
+.barras { list-style: none; display: grid; gap: 1.1rem; max-width: 700px; }
+.barras li span { display: flex; justify-content: space-between; font-weight: 700; margin-bottom: .3rem; }
+.pista { height: 12px; background: rgba(255,255,255,.1); border-radius: 99px; overflow: hidden; }
+.relleno { height: 100%; width: 0; border-radius: 99px; background: linear-gradient(90deg, var(--rosa), var(--amarillo)); transition: width 1.2s cubic-bezier(.2,.8,.2,1); }
+
+.contacto { text-align: center; }
+.contacto p { color: var(--suave); margin-bottom: 1.5rem; }
+.aviso { margin-top: 1rem; color: var(--amarillo); min-height: 1.5em; }
+.pie { text-align: center; padding: 2rem; color: var(--suave); font-size: .9rem; }
+
+@media (max-width: 600px) {
+  .nav nav { gap: .9rem; font-size: .9rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+  html { scroll-behavior: auto; }
+}
