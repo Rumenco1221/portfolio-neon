@@ -2,13 +2,15 @@
    Portfolio Neón — Lógica
    1. Texto que se escribe solo (efecto máquina de escribir)
    2. Proyectos generados desde un array + filtros
-   3. Barras de habilidades animadas con IntersectionObserver
+   3. Habilidades agrupadas por área
    4. Partículas en canvas que siguen al mouse
-   5. Copiar email al portapapeles
    ========================================================= */
 
+const GITHUB = "https://github.com/Rumenco1221/";
+const PAGES = "https://rumenco1221.github.io/";
+
 // ---------- 1. Efecto máquina de escribir ----------
-const frases = ["sitios web", "APIs con Python", "dashboards de datos", "experiencias únicas"];
+const frases = ["sitios web", "dashboards en Power BI", "consultas SQL", "automatizaciones con Python"];
 const rotador = document.getElementById("rotador");
 let indiceFrase = 0;
 let indiceLetra = 0;
@@ -32,13 +34,20 @@ function escribir() {
 escribir();
 
 // ---------- 2. Proyectos ----------
+// repo = nombre del repositorio en GitHub · demo = true si está publicado en GitHub Pages
 const proyectos = [
-  { titulo: "Sabores Latinos", desc: "Landing de restaurante con menú filtrable y carrito.", cat: "web", tags: ["HTML", "CSS", "JS"], color: "#FFB000" },
-  { titulo: "Galaxia Explorer", desc: "Viaje interactivo por el sistema solar en canvas.", cat: "web", tags: ["Canvas", "JS"], color: "#00E5FF" },
-  { titulo: "Pixel Arcade", desc: "Snake clásico con récord guardado en el navegador.", cat: "juegos", tags: ["JS", "localStorage"], color: "#FF2E88" },
-  { titulo: "Ventas Analytics", desc: "Análisis de ventas con SQL: CTE y funciones de ventana.", cat: "datos", tags: ["SQL", "SQLite"], color: "#FFE14D" },
-  { titulo: "Clima Vibes", desc: "Clima en tiempo real consumiendo una API pública.", cat: "web", tags: ["Fetch", "API"], color: "#7CFFCB" },
-  { titulo: "Beat Studio", desc: "Caja de ritmos de 16 pasos con Web Audio API.", cat: "juegos", tags: ["Web Audio", "JS"], color: "#FF7A00" }
+  { titulo: "ElectroHogar Dashboard", desc: "Ventas de 22.000 transacciones: limpieza de datos, KPIs en DAX y pronóstico a 12 meses.", cat: "datos", tags: ["Power BI", "DAX", "Python"], color: "#FFE14D", repo: "ElectroHogar-Dashboard-Ventas" },
+  { titulo: "SQL Revenue Intelligence", desc: "Cohortes, segmentación RFM y LTV con funciones de ventana.", cat: "datos", tags: ["SQL", "CTE", "pytest"], color: "#00E5FF", repo: "sql-revenue-intelligence-cohorts-rfm" },
+  { titulo: "Excel Report Autopilot", desc: "Consolida los Excel de sucursales, valida los datos y arma el reporte solo.", cat: "datos", tags: ["Python", "pandas", "Excel"], color: "#7CFFCB", repo: "excel-report-autopilot-python" },
+  { titulo: "AI Data Analyst Agent", desc: "Preguntas en español convertidas en SQL seguro, con guardrails y evaluaciones.", cat: "datos", tags: ["IA", "SQL", "Python"], color: "#FF2E88", repo: "ai-data-analyst-agent-text-to-sql" },
+  { titulo: "Fuga Neón", desc: "Juego arcade con ciudad procedural, pathfinding (BFS) y 30 tests.", cat: "juegos", tags: ["JS", "Canvas", "Testing"], color: "#FF2E88", repo: "fuga-neon", demo: true },
+  { titulo: "Sabores Latinos", desc: "Landing de restaurante con menú filtrable, carrito y reservas.", cat: "web", tags: ["HTML", "CSS", "JS"], color: "#FFB000", repo: "sabores-latinos", demo: true },
+  { titulo: "Tasky Kanban", desc: "Tablero Kanban con drag and drop, prioridades y guardado automático.", cat: "web", tags: ["JS", "Drag & Drop"], color: "#7CFFCB", repo: "tasky-kanban", demo: true },
+  { titulo: "Clima Vibes", desc: "Clima en tiempo real consumiendo una API pública.", cat: "web", tags: ["Fetch", "API"], color: "#00E5FF", repo: "clima-vibes", demo: true },
+  { titulo: "Galaxia Explorer", desc: "Viaje interactivo por el sistema solar en canvas.", cat: "web", tags: ["Canvas", "JS"], color: "#00E5FF", repo: "galaxia-explorer", demo: true },
+  { titulo: "Pixel Arcade", desc: "Snake clásico con récord guardado en el navegador.", cat: "juegos", tags: ["JS", "localStorage"], color: "#FF2E88", repo: "pixel-arcade", demo: true },
+  { titulo: "Beat Studio", desc: "Caja de ritmos de 16 pasos con Web Audio API.", cat: "juegos", tags: ["Web Audio", "JS"], color: "#FF7A00", repo: "beat-studio", demo: true },
+  { titulo: "API de Tareas", desc: "API REST con login JWT, SQLite y tests automatizados.", cat: "web", tags: ["Python", "FastAPI", "JWT"], color: "#FFE14D", repo: "api-tareas-fastapi" }
 ];
 const grilla = document.getElementById("grilla");
 
@@ -51,6 +60,10 @@ function pintarProyectos(filtro) {
         <h3>${p.titulo}</h3>
         <p>${p.desc}</p>
         <div class="etiquetas">${p.tags.map(t => `<span>${t}</span>`).join("")}</div>
+        <div class="enlaces">
+          ${p.demo ? `<a href="${PAGES}${p.repo}/" target="_blank" rel="noopener">Ver demo →</a>` : ""}
+          <a href="${GITHUB}${p.repo}" target="_blank" rel="noopener">Código →</a>
+        </div>
       </article>`)
     .join("");
 }
@@ -65,24 +78,17 @@ document.querySelectorAll(".filtro").forEach(boton => {
 });
 
 // ---------- 3. Habilidades ----------
-const habilidades = [["HTML y CSS", 85], ["JavaScript", 70], ["Python", 60], ["SQL", 65], ["Git y GitHub", 75]];
-const barras = document.getElementById("barras");
-barras.innerHTML = habilidades.map(([nombre, nivel]) => `
+const habilidades = {
+  "Desarrollo web": ["HTML5", "CSS3", "JavaScript", "Diseño responsive", "Canvas", "Consumo de APIs"],
+  "Datos y BI": ["Power BI", "DAX", "Power Query", "SQL", "Excel", "Modelado de datos", "KPIs"],
+  "Python y automatización": ["Python", "pandas", "FastAPI", "pytest", "Automatización de reportes"],
+  "Herramientas": ["Git", "GitHub", "GitHub Actions", "GitHub Pages", "IA (Claude, ChatGPT)"]
+};
+document.getElementById("grupos").innerHTML = Object.entries(habilidades).map(([grupo, lista]) => `
   <li>
-    <span>${nombre} <small>${nivel}%</small></span>
-    <div class="pista"><div class="relleno" data-nivel="${nivel}"></div></div>
+    <h3>${grupo}</h3>
+    <div class="chips">${lista.map(h => `<span>${h}</span>`).join("")}</div>
   </li>`).join("");
-
-// Cuando la sección aparece en pantalla, llenamos cada barra
-const observador = new IntersectionObserver(entradas => {
-  entradas.forEach(entrada => {
-    if (entrada.isIntersecting) {
-      entrada.target.querySelectorAll(".relleno").forEach(r => r.style.width = r.dataset.nivel + "%");
-      observador.disconnect();
-    }
-  });
-}, { threshold: 0.3 });
-observador.observe(barras);
 
 // ---------- 4. Partículas ----------
 const canvas = document.getElementById("particulas");
@@ -129,17 +135,5 @@ addEventListener("resize", ajustarCanvas);
 addEventListener("mousemove", e => { mouse.x = e.clientX; mouse.y = e.clientY; });
 ajustarCanvas();
 if (!matchMedia("(prefers-reduced-motion: reduce)").matches) animar();
-
-// ---------- 5. Copiar email ----------
-document.getElementById("copiarEmail").addEventListener("click", async () => {
-  const email = "tu-email@ejemplo.com"; // 👉 Cambia esto por tu email real
-  const aviso = document.getElementById("aviso");
-  try {
-    await navigator.clipboard.writeText(email);
-    aviso.textContent = `Copiado: ${email}`;
-  } catch {
-    aviso.textContent = `Mi email es ${email}`;
-  }
-});
 
 document.getElementById("anio").textContent = new Date().getFullYear();
