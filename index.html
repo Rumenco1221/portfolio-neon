@@ -3,12 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Portfolio personal de una desarrolladora Full Stack en formación: proyectos, habilidades y contacto.">
-  <title>Estela Oviedo Cortez · Desarrolladora Full Stack</title>
+  <meta name="description" content="Portfolio de Estela Oviedo Cortez, Analista de Datos Jr y Desarrolladora Web en Mar del Plata, Argentina: proyectos con JavaScript, HTML, CSS, Python, SQL y Power BI.">
+  <meta name="keywords" content="Desarrolladora Web, Frontend, JavaScript, HTML, CSS, Analista de Datos, Power BI, SQL, Python, Mar del Plata, remoto">
+  <meta name="author" content="Estela Oviedo Cortez">
+  <meta property="og:title" content="Estela Oviedo Cortez · Desarrolladora Web y Analista de Datos Jr">
+  <meta property="og:description" content="Sitios web, dashboards y automatizaciones hechos desde cero.">
+  <meta property="og:url" content="https://rumenco1221.github.io/portfolio-neon/">
+  <title>Estela Oviedo Cortez · Desarrolladora Web y Analista de Datos Jr</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+    /* Enlaces de cada proyecto */
+    .proyecto .enlaces { display: flex; gap: 1rem; margin-top: .8rem; flex-wrap: wrap; }
+    .proyecto .enlaces a { color: var(--color); font-weight: 700; text-decoration: none; }
+    .proyecto .enlaces a:hover { text-decoration: underline; }
+    /* Habilidades agrupadas (sin porcentajes) */
+    .grupos { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+    .grupos li { border: 1px solid rgba(255,255,255,.15); border-radius: 14px; padding: 1.1rem 1.2rem; background: rgba(255,255,255,.03); }
+    .grupos h3 { margin: 0 0 .6rem; font-size: 1rem; color: #00E5FF; }
+    .grupos .chips { display: flex; flex-wrap: wrap; gap: .4rem; }
+    .grupos .chips span { font-size: .8rem; padding: .2rem .6rem; border-radius: 999px; border: 1px solid rgba(255,255,255,.25); }
+    .contacto .acciones { justify-content: center; }
+  </style>
 </head>
 <body>
   <!-- Lienzo de partículas: reacciona al movimiento del mouse -->
@@ -30,10 +48,10 @@
         Construyo
         <span class="rotador" id="rotador">sitios web</span>
       </h1>
-      <p class="bajada">Desarrolladora Full Stack en formación. Aprendo construyendo proyectos reales con HTML, CSS, JavaScript, Python y SQL.</p>
+      <p class="bajada">Desarrolladora Web y Analista de Datos Jr en Mar del Plata. Construyo sitios con HTML, CSS y JavaScript, dashboards en Power BI y automatizaciones con Python y SQL. Curso la Carrera de Data Analytics en Coderhouse.</p>
       <div class="acciones">
         <a class="btn btn-relleno" href="#proyectos">Ver proyectos</a>
-        <a class="btn btn-borde" href="#contacto">Escribirme</a>
+        <a class="btn btn-borde" href="https://rumenco1221.github.io/estela-oviedo-data-portfolio-site/" target="_blank" rel="noopener">Portfolio de datos</a>
       </div>
     </section>
 
@@ -50,14 +68,16 @@
 
     <section id="habilidades" class="seccion">
       <h2>Habilidades</h2>
-      <ul class="barras" id="barras"></ul>
+      <ul class="grupos" id="grupos"></ul>
     </section>
 
     <section id="contacto" class="seccion contacto">
       <h2>¿Trabajamos juntos?</h2>
-      <p>Estoy abierta a prácticas, proyectos freelance y primeros empleos remotos.</p>
-      <button class="btn btn-relleno" id="copiarEmail">Copiar mi email</button>
-      <p class="aviso" id="aviso" role="status"></p>
+      <p>Busco mi primer rol como Desarrolladora Web, Analista de Datos o Analista BI Jr (remoto o Mar del Plata) y tomo proyectos freelance.</p>
+      <div class="acciones">
+        <a class="btn btn-relleno" href="https://www.linkedin.com/in/estela-oviedo-cortez-796303228" target="_blank" rel="noopener">Escribime por LinkedIn</a>
+        <a class="btn btn-borde" href="https://github.com/Rumenco1221" target="_blank" rel="noopener">GitHub</a>
+      </div>
     </section>
   </main>
 
